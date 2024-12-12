@@ -1,6 +1,8 @@
 import Instagram from "@/public/icons/InstagramIcon";
 import YouTube from "@/public/icons/YoutubeIcon";
 import Link from "next/link";
+import ActiveLink from "../active-link/ActiveLink";
+import { BurgerIcon } from "@/public/icons/BurgerIcon";
 
 interface NavItems {
   path: string;
@@ -15,30 +17,36 @@ export const Navbar: React.FC = () => {
   ];
   return (
     <>
-      <header className="flex justify-between items-center max-w-6xl m-auto my-4">
-        <h1 className="text-5xl flex flex-wrap">
+      <header className="flex justify-between items-center max-w-6xl m-auto my-4 relative">
+        <h1 className="text-5xl flex flex-wrap font-bold font-oswald tracking-wide text-amber-600">
           <Link href="/">
             Primera<br></br> Fe
           </Link>
         </h1>
-        <nav className="flex flex-1 ml-4 gap-4">
+        <nav className="md:flex flex-1 ml-4 font-semibold hidden absolute md:static">
           {navItems.map((navItem, index) => (
-            <Link key={index} href={navItem.path}>
-              {navItem.text}
-            </Link>
+            <ActiveLink key={index} {...navItem} />
           ))}
         </nav>
-        <nav className="flex gap-4">
-          <Link href="https://www.instagram.com/primerafe/" target="_blank">
+        <nav className="md:flex gap-4 hidden">
+          <Link
+            href="https://www.instagram.com/primerafe/"
+            target="_blank"
+            style={{ color: "black" }}
+          >
             <Instagram />
           </Link>
           <Link
             href="https://www.youtube.com/channel/UCCGkAW88Kqnd4cpgr_wV8Uw"
             target="_blank"
+            style={{ color: "black" }}
           >
             <YouTube />
           </Link>
         </nav>
+        <button className="md:hidden">
+          <BurgerIcon />
+        </button>
       </header>
     </>
   );

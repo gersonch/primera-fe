@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        oswald: ["Oswald"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
