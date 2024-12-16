@@ -1,5 +1,5 @@
 .link {
-  @apply hover:bg-blue-600 transition-all px-4 py-2 rounded;
+  @apply hover:bg-blue-600 hover:text-white transition-all px-4 py-2 rounded;
 }
 
 .active-link {

@@ -1,8 +1,10 @@
+import { ProductCategories } from '@/app/components/ProductCategories'
+
 export default function Tienda() {
   return (
     <>
-      <h2>la Tiendita</h2>
-      <p>jeje</p>
+      <h1>La tienda</h1>
+      <ProductCategories />
     </>
-  );
+  )
 }
