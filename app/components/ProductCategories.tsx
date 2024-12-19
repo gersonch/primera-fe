@@ -1,18 +1,18 @@
-import Link from "next/link";
-import Image from "next/image";
-import { getCategories } from "@/lib/get-categories";
+import Link from 'next/link'
+import Image from 'next/image'
+import { getCategories } from '@/lib/get-categories'
 
 interface Category {
-  slug: string;
-  name: string;
-  description: string;
-  image: string;
+  slug: string
+  name: string
+  description: string
+  image: string
 }
 
 export const ProductCategories = async () => {
-  const categories: Category[] = await getCategories();
+  const categories: Category[] = await getCategories()
 
-  if (categories.length === 0) return null;
+  if (categories.length === 0) return null
   return (
     <section className="py-8 ">
       <div className="text-center mb-6">
@@ -46,5 +46,5 @@ export const ProductCategories = async () => {
         ))}
       </div>
     </section>
-  );
-};
+  )
+}
