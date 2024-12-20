@@ -9,7 +9,7 @@ export default async function CategoryPage({
 }) {
   const { categoryId } = params
   const { pagination, products } = await getProducts({ categoryId })
-
+  console.log(products)
   return (
     <section className="max-w-6xl mx-auto px-4 py-6">
       <div className="mb-6">

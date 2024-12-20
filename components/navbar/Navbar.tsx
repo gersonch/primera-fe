@@ -3,6 +3,7 @@ import YouTube from '@/public/icons/YoutubeIcon'
 import Link from 'next/link'
 import ActiveLink from '../active-link/ActiveLink'
 import { BurgerIcon } from '@/public/icons/BurgerIcon'
+import { Cart } from '../Cart'
 
 interface NavItems {
   path: string
@@ -12,8 +13,8 @@ export const Navbar: React.FC = () => {
   const navItems: NavItems[] = [
     { path: '/', text: 'Inicio' },
     { path: '/sobre-nosotros', text: 'Sobre Nosotros' },
-    { path: '/tienda', text: 'Tienda' },
     { path: '/contactanos', text: 'Contáctanos' },
+    { path: '/tienda', text: 'Tienda' },
   ]
   return (
     <>
@@ -23,11 +24,15 @@ export const Navbar: React.FC = () => {
             Primera<br></br> Fe
           </Link>
         </h1>
-        <nav className="md:flex flex-1 ml-4 font-semibold hidden absolute md:static">
+        <nav className="md:flex flex-1 ml-4 font-semibold hidden absolute md:static items-center">
           {navItems.map((navItem, index) => (
             <ActiveLink key={index} {...navItem} />
           ))}
+          <div className="cursor-pointer hover:scale-125 px-4 transition-all">
+            <Cart />
+          </div>
         </nav>
+
         <nav className="md:flex gap-4 hidden">
           <Link
             href="https://www.instagram.com/primerafe/"

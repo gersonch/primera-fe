@@ -1,0 +1,26 @@
+.img {
+  animation: scaleAnimation 1s ease-out;
+}
+
+.text {
+  animation: rightToLeft 1s ease-out;
+}
+@keyframes scaleAnimation {
+  from {
+    scale: 0.8;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes rightToLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

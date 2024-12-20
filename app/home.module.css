@@ -1,0 +1,20 @@
+.blocks {
+  view-timeline-name: --blocks;
+  view-timeline-axis: block;
+
+  animation-timeline: --blocks;
+  animation-name: leftToright;
+
+  animation-range: entry 25% cover 30%;
+}
+.first-block {
+  animation: leftToright 1s ease-in-out;
+}
+@keyframes leftToright {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}

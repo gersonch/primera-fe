@@ -1,6 +1,7 @@
 import { getAboutInfo } from '@/lib/get-about'
 import { BlocksRenderer } from '@strapi/blocks-react-renderer'
 import Image from 'next/image'
+import style from './about.module.css'
 
 const About = async () => {
   const { title, description, image } = await getAboutInfo()
@@ -14,14 +15,15 @@ const About = async () => {
           alt="Quienes Somos"
           width={400}
           height={400}
-          className="object-cover"
+          className={`object-cover ${style.img}`}
+          loading="lazy"
         />
       </div>
 
       {/* Texto */}
-      <div className="w-full md:w-1/2 my-4 p-6">
-        <h2 className="text-4xl font-bold text-green-900 mb-4">{title}</h2>
-        <div className="">
+      <div className={`${style.text} w-full md:w-1/2 my-4 p-6`}>
+        <h2 className="text-4xl font-bold text-green-900 mb-8 ">{title}</h2>
+        <div className={` mt-2`}>
           <BlocksRenderer content={description} />
         </div>
       </div>

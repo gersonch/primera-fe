@@ -1,9 +1,9 @@
-const { STRAPI_HOST, STRAPI_TOKEN } = process.env;
+const { STRAPI_HOST, STRAPI_TOKEN } = process.env
 
-export function query(url: string) {
-  return fetch(`${STRAPI_HOST}/api/${url}`, {
+export async function query(url: string) {
+  return await fetch(`${STRAPI_HOST}/api/${url}`, {
     headers: {
       Authorization: `Bearer ${STRAPI_TOKEN}`,
     },
-  }).then((res) => res.json());
+  }).then((res) => res.json())
 }
