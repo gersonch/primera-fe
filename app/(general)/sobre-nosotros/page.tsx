@@ -2,13 +2,20 @@ import { getAboutInfo } from '@/lib/get-about'
 import { BlocksRenderer } from '@strapi/blocks-react-renderer'
 import Image from 'next/image'
 import style from './about.module.css'
+import { Suspense } from 'react'
+
+const Loading = () => (
+  <div className="flex justify-center items-center h-screen">
+    <p className="bg-black">Cargando...</p>
+  </div>
+)
 
 const About = async () => {
-  const { title, description, image } = await getAboutInfo()
+  const aboutInfoPromise = getAboutInfo()
+  const { title, description, image } = await aboutInfoPromise
 
   return (
     <section className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 p-4 my-16">
-      <h1>holitas</h1>
       {/* Imagen */}
       <div className=" w-full md:w-1/2 aspect-w-16 aspect-h-9 flex justify-center no-bg ">
         <Image
@@ -32,4 +39,14 @@ const About = async () => {
   )
 }
 
-export default About
+const AboutPage = () => {
+  const aboutInfoPromise = getAboutInfo()
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <About aboutInfoPromise={aboutInfoPromise} />
+    </Suspense>
+  )
+}
+
+export default AboutPage
