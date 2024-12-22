@@ -8,6 +8,7 @@ const About = async () => {
 
   return (
     <section className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 p-4 my-16">
+      <h1>holitas</h1>
       {/* Imagen */}
       <div className=" w-full md:w-1/2 aspect-w-16 aspect-h-9 flex justify-center no-bg ">
         <Image
