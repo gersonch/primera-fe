@@ -13,7 +13,6 @@ export default function ProductContent({
   product: ProductType
   categoryId: string
 }) {
-  console.log(product)
   return (
     <Suspense fallback={<SkeletonProduct />}>
       <div className="mb-6">
