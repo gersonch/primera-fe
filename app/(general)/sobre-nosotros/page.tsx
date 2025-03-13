@@ -23,14 +23,14 @@ const About = ({ title, description, image }: AboutProps) => {
   return (
     <section className="flex flex-col-reverse sm:flex-row justify-between sm:h-screen overflow-hidden">
       <div
-        className={`${style.text} w-screen px-8 flex flex-col justify-end h-screen`}
+        className={`${style.text} w-screen px-8 flex flex-col sm:justify-end my-4  sm:h-screen`}
       >
         <h2 className={`mb-8 ${style.links} font-semibold`}>{title}</h2>
         <div className={`${style.links} max-w-sm my-4 text-sm `}>
           <BlocksRenderer content={description} />
         </div>
       </div>
-      <div className="flex   sm:w-full ">
+      <div className="flex sm:w-full ">
         <Image
           src={image}
           alt="Quienes Somos"

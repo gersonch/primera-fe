@@ -2,6 +2,7 @@ import Link from 'next/link'
 import ActiveLink from '../active-link/ActiveLink'
 import { FaShoppingCart } from 'react-icons/fa' // Importar el ícono de carrito
 import styles from './styles.module.css'
+import { Burger } from '../Burger'
 
 export interface NavItems {
   path: string
@@ -19,24 +20,29 @@ export const Navbar: React.FC = () => {
 
   return (
     <header>
-      <div className="flex items-center justify-between absolute w-full bg-white">
+      <div className="flex items-center justify-between absolute w-full bg-white text-center py-2 md:py-1">
         {/* Enlaces de la izquierda */}
-        <div className={`flex gap-6 flex-grow basis-0 ${styles.links}`}>
+        <div
+          className={`md:flex flex-col md:flex-row hidden gap-6 md:flex-grow md:basis-0 ${styles.links}`}
+        >
           {navItems.slice(0, 2).map((navItem, index) => (
             <ActiveLink key={index} {...navItem} />
           ))}
         </div>
+        <div className="md:hidden pl-4">
+          <Burger />
+        </div>
 
         {/* Título centrado */}
         <h1
-          className={`flex text-center justify-center text-4xl font-bold ${styles.h1}`}
+          className={`flex text-center justify-center text-4xl font-bold w-full lg:w-auto ${styles.h1}`}
         >
           <Link href="/">Primera Fe</Link>
         </h1>
 
         {/* Enlaces a la derecha y el carrito */}
         <div
-          className={`flex gap-6 flex-grow basis-0 justify-end items-center ${styles.links}`}
+          className={`md:flex flex-col md:flex-row hidden gap-6 md:flex-grow md:basis-0 justify-end items-center ${styles.links}`}
         >
           {navItems.slice(3).map((navItem, index) =>
             // Si el texto es "Carrito", agrega el ícono
