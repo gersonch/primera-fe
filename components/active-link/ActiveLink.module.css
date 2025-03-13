@@ -1,7 +1,7 @@
 .link {
-  @apply hover:bg-blue-600 hover:text-white transition-all px-4 py-2 rounded;
+  @apply hover:underline transition-all px-4 py-4 rounded underline-offset-4;
 }
 
 .active-link {
-  @apply text-blue-600;
+  @apply underline underline-offset-4;
 }
