@@ -21,10 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${urbanist.variable} ${urbanist.variable} antialiased px-8`}
+        className={`${urbanist.variable} ${urbanist.variable} antialiased `}
       >
         <Navbar />
-        <main className="max-w-6xl m-auto">{children}</main>
+        <main className="">{children}</main>
       </body>
     </html>
   )

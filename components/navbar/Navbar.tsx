@@ -1,10 +1,8 @@
-import Instagram from '@/public/icons/InstagramIcon'
-import YouTube from '@/public/icons/YoutubeIcon'
 import Link from 'next/link'
 import ActiveLink from '../active-link/ActiveLink'
-import { BurgerIcon } from '@/public/icons/BurgerIcon'
-
-import { PopUpCart } from './PopUpCart'
+import { FaShoppingCart } from 'react-icons/fa' // Importar el ícono de carrito
+import styles from './styles.module.css'
+import { Burger } from '../Burger'
 
 export interface NavItems {
   path: string
@@ -13,53 +11,57 @@ export interface NavItems {
 
 export const Navbar: React.FC = () => {
   const navItems: NavItems[] = [
-    { path: '/', text: 'Inicio' },
     { path: '/sobre-nosotros', text: 'Sobre Nosotros' },
     { path: '/contactanos', text: 'Contáctanos' },
+    { path: '/', text: 'Primera Fe' },
     { path: '/tienda', text: 'Tienda' },
-    { path: '/cart', text: '🛒' },
+    { path: '/cart', text: 'Carrito' },
   ]
-  return (
-    <>
-      <header className="flex justify-between items-center max-w-6xl m-auto my-4 relative">
-        <h1 className="text-5xl flex flex-wrap font-bold font-oswald tracking-wide text-amber-600">
-          <Link href="/">
-            Primera<br></br> Fe
-          </Link>
-        </h1>
-        <nav className="md:flex flex-1 ml-4 font-semibold hidden absolute items-center md:static">
-          {navItems.map((navItem, index) => (
-            <div key={index}>
-              <div className="relative">
-                <ActiveLink {...navItem} />
-                <PopUpCart navItem={navItem} />
-              </div>
-            </div>
-          ))}
-        </nav>
 
-        <nav className="md:flex gap-4 hidden">
-          <Link
-            href="https://www.instagram.com/primerafe/"
-            target="_blank"
-            style={{ color: 'black' }}
-            className="hover:scale-125 transition-all"
-          >
-            <Instagram />
-          </Link>
-          <Link
-            href="https://www.youtube.com/channel/UCCGkAW88Kqnd4cpgr_wV8Uw"
-            target="_blank"
-            style={{ color: 'black' }}
-            className="hover:scale-125 transition-all"
-          >
-            <YouTube />
-          </Link>
-        </nav>
-        <button className="md:hidden">
-          <BurgerIcon />
-        </button>
-      </header>
-    </>
+  return (
+    <header>
+      <div className="flex items-center justify-between absolute w-full bg-white text-center py-2 md:py-1">
+        {/* Enlaces de la izquierda */}
+        <div
+          className={`md:flex flex-col md:flex-row hidden gap-6 md:flex-grow md:basis-0 ${styles.links}`}
+        >
+          {navItems.slice(0, 2).map((navItem, index) => (
+            <ActiveLink key={index} {...navItem} />
+          ))}
+        </div>
+        <div className="md:hidden pl-4">
+          <Burger />
+        </div>
+
+        {/* Título centrado */}
+        <h1
+          className={`flex text-center justify-center text-4xl font-bold w-full lg:w-auto ${styles.h1}`}
+        >
+          <Link href="/">Primera Fe</Link>
+        </h1>
+
+        {/* Enlaces a la derecha y el carrito */}
+        <div
+          className={`md:flex flex-col md:flex-row hidden gap-6 md:flex-grow md:basis-0 justify-end items-center ${styles.links}`}
+        >
+          {navItems.slice(3).map((navItem, index) =>
+            // Si el texto es "Carrito", agrega el ícono
+            navItem.text === 'Carrito' ? (
+              <Link key={index} href={navItem.path}>
+                <div className="flex items-center text-center mr-4">
+                  <FaShoppingCart className="text-xl mr-2 flex items-center" />
+                  {/* Icono de carrito */}
+                  <div className=" flex items-center text-center">
+                    {navItem.text}
+                  </div>
+                </div>
+              </Link>
+            ) : (
+              <ActiveLink key={index} {...navItem} />
+            )
+          )}
+        </div>
+      </div>
+    </header>
   )
 }
