@@ -3,7 +3,6 @@ import YouTube from '@/public/icons/YoutubeIcon'
 import Link from 'next/link'
 import ActiveLink from '../active-link/ActiveLink'
 import { BurgerIcon } from '@/public/icons/BurgerIcon'
-import { Cart } from '../Cart'
 
 interface NavItems {
   path: string
@@ -15,6 +14,7 @@ export const Navbar: React.FC = () => {
     { path: '/sobre-nosotros', text: 'Sobre Nosotros' },
     { path: '/contactanos', text: 'Contáctanos' },
     { path: '/tienda', text: 'Tienda' },
+    { path: '/cart', text: 'Carrito' },
   ]
   return (
     <>
@@ -28,9 +28,6 @@ export const Navbar: React.FC = () => {
           {navItems.map((navItem, index) => (
             <ActiveLink key={index} {...navItem} />
           ))}
-          <div className="cursor-pointer hover:scale-125 px-4 transition-all">
-            <Cart />
-          </div>
         </nav>
 
         <nav className="md:flex gap-4 hidden">

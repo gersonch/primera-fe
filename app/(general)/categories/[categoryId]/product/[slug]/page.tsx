@@ -9,7 +9,7 @@ export default async function CategoryPage({
 }: {
   params: { slug: string; categoryId: string }
 }) {
-  const { slug, categoryId } = params
+  const { slug, categoryId } = await params
   const product = await getProduct({ slug })
 
   if (!product) return <div>¡Producto no encontrado!</div>

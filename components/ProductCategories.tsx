@@ -1,13 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { getCategories } from '@/lib/get-categories'
-
-interface Category {
-  slug: string
-  name: string
-  description: string
-  image: string
-}
+import { Category } from '@/types/category'
 
 export const ProductCategories = async () => {
   const categories: Category[] = await getCategories()
