@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SkeletonProduct } from './SkeletonProduct'
 import { ProductType } from '@/types/product'
+import { useCart } from '@/hooks/use-cart'
 
 export default function ProductContent({
   product,
@@ -13,6 +14,9 @@ export default function ProductContent({
   product: ProductType
   categoryId: string
 }) {
+  const { addItem, items } = useCart()
+  console.log(items)
+
   return (
     <Suspense fallback={<SkeletonProduct />}>
       <div className="mb-6">
@@ -54,7 +58,10 @@ export default function ProductContent({
           >
             {product.isActive ? 'Disponible' : 'No disponible'}
           </div>
-          <button className="mt-6 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300">
+          <button
+            className="mt-6 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
+            onClick={() => addItem(product)}
+          >
             Añadir al carrito
           </button>
         </div>

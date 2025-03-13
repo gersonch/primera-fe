@@ -3,6 +3,7 @@ import { BlocksRenderer } from '@strapi/blocks-react-renderer'
 import Image from 'next/image'
 import style from './about.module.css'
 import { Suspense } from 'react'
+import { RootNode } from '@strapi/blocks-react-renderer/dist/BlocksRenderer'
 
 const Loading = () => (
   <div className="flex justify-center items-center h-screen">
@@ -10,10 +11,14 @@ const Loading = () => (
   </div>
 )
 
-const About = async () => {
-  const aboutInfoPromise = getAboutInfo()
-  const { title, description, image } = await aboutInfoPromise
+interface AboutProps {
+  title: string
+  description: RootNode[]
+  image: string
+}
 
+// Componente que muestra la información de "Sobre Nosotros"
+const About = ({ title, description, image }: AboutProps) => {
   return (
     <section className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 p-4 my-16">
       {/* Imagen */}
@@ -39,12 +44,15 @@ const About = async () => {
   )
 }
 
-const AboutPage = () => {
-  const aboutInfoPromise = getAboutInfo()
+// Componente principal de la página, resuelve los datos antes de pasarlos al componente About
+const AboutPage = async () => {
+  // Resuelve la promesa aquí
+  const { title, description, image } = await getAboutInfo()
 
   return (
     <Suspense fallback={<Loading />}>
-      <About aboutInfoPromise={aboutInfoPromise} />
+      {/* Pasa los datos resueltos al componente About */}
+      <About title={title} description={description} image={image} />
     </Suspense>
   )
 }

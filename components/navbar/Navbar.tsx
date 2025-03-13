@@ -3,18 +3,21 @@ import YouTube from '@/public/icons/YoutubeIcon'
 import Link from 'next/link'
 import ActiveLink from '../active-link/ActiveLink'
 import { BurgerIcon } from '@/public/icons/BurgerIcon'
-import { Cart } from '../Cart'
 
-interface NavItems {
+import { PopUpCart } from './PopUpCart'
+
+export interface NavItems {
   path: string
   text: string
 }
+
 export const Navbar: React.FC = () => {
   const navItems: NavItems[] = [
     { path: '/', text: 'Inicio' },
     { path: '/sobre-nosotros', text: 'Sobre Nosotros' },
     { path: '/contactanos', text: 'Contáctanos' },
     { path: '/tienda', text: 'Tienda' },
+    { path: '/cart', text: '🛒' },
   ]
   return (
     <>
@@ -24,13 +27,15 @@ export const Navbar: React.FC = () => {
             Primera<br></br> Fe
           </Link>
         </h1>
-        <nav className="md:flex flex-1 ml-4 font-semibold hidden absolute md:static items-center">
+        <nav className="md:flex flex-1 ml-4 font-semibold hidden absolute items-center md:static">
           {navItems.map((navItem, index) => (
-            <ActiveLink key={index} {...navItem} />
+            <div key={index}>
+              <div className="relative">
+                <ActiveLink {...navItem} />
+                <PopUpCart navItem={navItem} />
+              </div>
+            </div>
           ))}
-          <div className="cursor-pointer hover:scale-125 px-4 transition-all">
-            <Cart />
-          </div>
         </nav>
 
         <nav className="md:flex gap-4 hidden">
