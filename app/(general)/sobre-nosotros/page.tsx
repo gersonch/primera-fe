@@ -23,7 +23,7 @@ const About = ({ title, description, image }: AboutProps) => {
   return (
     <section className="flex flex-col-reverse sm:flex-row justify-between sm:h-screen overflow-hidden">
       <div
-        className={`${style.text} w-screen px-8 flex flex-col sm:justify-end my-4  sm:h-screen`}
+        className={`${style.text} w-screen px-8 flex flex-col sm:justify-end my-4  sm:h-screen pb-4`}
       >
         <h2 className={`mb-8 ${style.links} font-semibold`}>{title}</h2>
         <div className={`${style.links} max-w-sm my-4 text-sm `}>

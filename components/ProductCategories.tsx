@@ -8,7 +8,7 @@ export const ProductCategories = async () => {
 
   if (categories.length === 0) return null
   return (
-    <section className="py-8 ">
+    <section className="mt-20">
       <div className="text-center mb-6">
         <p className="text-xl font-semibold text-gray-800">
           Todas las categorías
