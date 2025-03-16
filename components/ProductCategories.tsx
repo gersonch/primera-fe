@@ -2,39 +2,34 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getCategories } from '@/lib/get-categories'
 import { Category } from '@/types/category'
+import style from '@/components/navbar/styles.module.css'
 
 export const ProductCategories = async () => {
   const categories: Category[] = await getCategories()
 
   if (categories.length === 0) return null
   return (
-    <section className="mt-20">
-      <div className="text-center mb-6">
-        <p className="text-xl font-semibold text-gray-800">
-          Todas las categorías
-        </p>
+    <section className="mt-20 ">
+      <div className="text-center mb-6 ">
+        <p className="text-xl font-semibold text-white">Todas las categorías</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 px-4 md:px-8 max-w-5xl mx-auto min-h-screen pt-4 pb-8">
         {categories.map((category, index) => (
-          <Link
-            href={`/categories/${category.slug}`}
-            key={index}
-            className="group block bg-white shadow-md hover:shadow-lg rounded-lg overflow-hidden transition-shadow duration-200 py-4 px-2"
-          >
-            <div className="relative w-full h-64">
+          <Link href={`/categories/${category.slug}`} key={index} className="">
+            <div className="">
               <Image
                 src={category.image}
                 alt={category.name}
-                layout="fill"
-                objectFit="contain"
-                className="group-hover:scale-105 transition-transform duration-300"
+                width={2000}
+                height={2000}
+                className="aspect-w-9 aspect-h-16 w-[800px] h-[750px] object-cover"
               />
             </div>
-            <div className="p-4">
-              <h3 className="text-lg font-medium text-gray-900 group-hover:text-blue-600">
-                {category.name}
-              </h3>
-              <small className="text-gray-600">{category.description}</small>
+            <div className="">
+              <h3 className={`${style.links} !text-white`}>{category.name}</h3>
+              <small className={`${style.links} !text-white`}>
+                {category.description}
+              </small>
             </div>
           </Link>
         ))}

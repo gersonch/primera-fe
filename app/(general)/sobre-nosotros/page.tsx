@@ -2,15 +2,9 @@ import { getAboutInfo } from '@/lib/get-about'
 import { BlocksRenderer } from '@strapi/blocks-react-renderer'
 import Image from 'next/image'
 import style from './about.module.css'
-
+import { SkeletonAbout } from './SkeletonAbout'
 import { Suspense } from 'react'
 import { RootNode } from '@strapi/blocks-react-renderer/dist/BlocksRenderer'
-
-const Loading = () => (
-  <div className="flex justify-center items-center h-screen">
-    <p className="bg-black">Cargando...</p>
-  </div>
-)
 
 interface AboutProps {
   title: string
@@ -50,7 +44,7 @@ const AboutPage = async () => {
   const { title, description, image } = await getAboutInfo()
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<SkeletonAbout />}>
       {/* Pasa los datos resueltos al componente About */}
       <About title={title} description={description} image={image} />
     </Suspense>
