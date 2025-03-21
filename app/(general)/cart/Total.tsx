@@ -5,7 +5,7 @@ export function Total({ items }: { items: CartItem[] }) {
   const total = GetTotalCart({ items })
 
   return (
-    <section className="mx-4 flex flex-col lg:h-[750px] h-96">
+    <section className="mx-4 flex flex-col  h-[calc(100vh-10rem)] lg:h-[calc(100vh-10rem)]">
       <div className="flex flex-col gap-4">
         <div className="border-b border-black pb-4 ">Resumen: </div>
       </div>
