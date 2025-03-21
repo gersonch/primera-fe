@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import ActiveLink from '../active-link/ActiveLink'
 import styles from './styles.module.css'
-import { IoMenu, IoClose } from 'react-icons/io5' // Importar el ícono de menú
+import { IoMenu, IoClose } from 'react-icons/io5'
 import { useState, useEffect } from 'react'
 import { useCart } from '@/hooks/use-cart'
 import { RiShoppingCart2Fill } from 'react-icons/ri'
@@ -43,10 +43,16 @@ export const Navbar: React.FC = () => {
 
   return (
     <header>
-      <div className="flex items-center justify-between md:absolute w-full bg-white text-center py-2 md:py-1 relative ">
+      <div
+        className={`${isDeploy && 'bg-slate-500'} flex items-center justify-between md:absolute w-full  bg-white text-center py-4 md:py-0 relative uppercase text-md transition-all`}
+      >
         {/* Enlaces de la izquierda */}
         <div
-          className={`md:flex flex-col md:flex-row text-sm ${isDeploy ? 'absolute flex flex-col opacity-100 top-14 bg-white h-screen px-16 py-4 items-center z-50' : ' hidden opacity-70 pointer-events-none'} md:pointer-events-auto gap-6 md:flex-grow md:basis-0 ${styles.links} transition`}
+          className={`md:flex flex-col md:flex-row text-sm  ${
+            isDeploy
+              ? 'absolute flex flex-col opacity-100 top-14 bg-slate-500 lg:bg-white h-screen w-screen px-16 py-4 items-center z-50 slide-in-from-left-0'
+              : 'opacity-0 md:opacity-100 pointer-events-none absolute md:static'
+          } md:pointer-events-auto gap-6 md:flex-grow md:basis-0 ${styles.links} transition `}
         >
           {navItems.slice(0, 2).map((navItem, index) => (
             <ActiveLink key={index} {...navItem} />
@@ -54,9 +60,9 @@ export const Navbar: React.FC = () => {
           {isDeploy &&
             navItems.slice(3).map((navItem, index) =>
               // Si el texto es "Carrito", agrega el ícono
-              navItem.text === 'Carrito' ? (
+              navItem.path === '/cart' ? (
                 <Link key={index} href={navItem.path}>
-                  <div className="flex items-center text-center mr-4">
+                  <div className="flex items-center text-center mr-4  ">
                     {items.length > 0 ? (
                       <RiShoppingCart2Fill className="text-xl mr-2 flex items-center" />
                     ) : (
@@ -75,7 +81,10 @@ export const Navbar: React.FC = () => {
             )}
         </div>
         <div className="md:hidden pl-4">
-          <button onClick={() => setIsDeploy(!isDeploy)} className="z-50">
+          <button
+            onClick={() => setIsDeploy(!isDeploy)}
+            className="z-50 text-3xl text-gray-600 font-thin"
+          >
             {isDeploy ? <IoClose /> : <IoMenu />}
           </button>
         </div>
@@ -89,12 +98,16 @@ export const Navbar: React.FC = () => {
 
         {/* Enlaces a la derecha y el carrito */}
         <div
-          className={` md:flex flex-col md:flex-row hidden gap-6 md:flex-grow md:basis-0 justify-end items-center text-sm ${styles.links}`}
+          className={`md:flex flex-col md:flex-row hidden gap-6 md:flex-grow md:basis-0 justify-end items-center text-md ${styles.links}`}
         >
           {navItems.slice(3).map((navItem, index) =>
             // Si el texto es "Carrito", agrega el ícono
-            navItem.text === 'Carrito' ? (
-              <Link key={index} href={navItem.path}>
+            navItem.path === '/cart' ? (
+              <Link
+                key={index}
+                href={navItem.path}
+                className={`${styles.links}`}
+              >
                 <div
                   className={`flex items-center text-center mr-4 hover:underline underline-offset-4`}
                 >
@@ -104,7 +117,9 @@ export const Navbar: React.FC = () => {
                     <RiShoppingCart2Line className="text-xl mr-2 flex items-center" />
                   )}
                   {/* Icono de carrito */}
-                  <div className=" flex items-center text-center">
+                  <div
+                    className={`flex items-center text-center ${styles.links}`}
+                  >
                     {navItem.text}
                   </div>
                 </div>

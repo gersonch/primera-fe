@@ -1,12 +1,12 @@
 import { getProducts } from '@/lib/get-products'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Suspense } from 'react'
 import {
   Product,
   GetProductsResponse,
   CategoryPageProps,
 } from '@/types/categories'
+import { CardProduct } from '@/components/CardProduct'
 
 const Loading = () => (
   <div className="flex justify-center items-center h-screen">
@@ -22,7 +22,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <Suspense fallback={<Loading />}>
-      <section className="max-w-6xl mx-auto px-4 py-6">
+      <section className="h-screen px-4 py-6 bg-[url('/images/hero-pose.jpg')]  bg-center min-h-screen w-full bg-cover bg-fixed">
         <div className="mb-6">
           <Link
             href="/tienda"
@@ -31,29 +31,29 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             Volver
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {products.map((product: Product, index: number) => (
-            <Link
-              href={`/categories/${categoryId}/product/${product.slug}`}
-              key={index}
-              className="border rounded-lg shadow-lg p-4 flex flex-col items-center"
-            >
-              <h1 className="text-lg font-semibold mb-2">{product.name}</h1>
-              <Image
-                src={product.image}
-                alt={product.name}
-                height={200}
-                width={200}
-                className="rounded-lg"
-              />
-              <span className="mt-4 text-green-600 font-bold text-xl">
-                {new Intl.NumberFormat('es-CL', {
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {products.map((product: Product, index: number) => {
+            const { slug } = product
+            return (
+              <CardProduct
+                href={`/categories/${categoryId}/product/${slug}`}
+                key={index}
+                name={product.name}
+                description={null}
+                price={new Intl.NumberFormat('es-CL', {
                   style: 'currency',
                   currency: 'CLP',
                 }).format(product.price)}
-              </span>
-            </Link>
-          ))}
+                image={product.image}
+                slug={slug}
+                index={index}
+              />
+            )
+          })}
+          {/* {new Intl.NumberFormat('es-CL', {
+                  style: 'currency',
+                  currency: 'CLP',
+                }).format(product.price)} */}
         </div>
       </section>
     </Suspense>

@@ -1,26 +1,28 @@
 'use client'
-
 import { useCart } from '@/hooks/use-cart'
 import Image from 'next/image'
 import Link from 'next/link'
 import style from '@/components/navbar/styles.module.css'
+import { Total } from './Total'
 
 export default function Carrito() {
   const { items, addQuantity, substractQuantity, removeAll, removeItem } =
     useCart()
 
   return (
-    <section className={`px-4 pt-20 pb-8 !text-black ${style.links}`}>
-      <h1 className="font-bold mb-4">
-        Carrito de Compras {'('}
-        {items.length}
-        {')'}
-      </h1>
+    <section className={`px-4 pt-20 pb-8  ${style.links}`}>
+      <div className="w-full border-b lg:border-none border-gray-600 border-opacity-35 mb-4 !text-gray-600">
+        <h1 className="font-bold mb-4">
+          Carrito de Compras {'('}
+          {items.length}
+          {')'}
+        </h1>
+      </div>
 
       {items.length === 0 ? (
         <p className="text-gray-600">Tu carrito está vacío.</p>
       ) : (
-        <section className="flex flex-col lg:flex-row justify-between gap-4 mr-4">
+        <section className="flex flex-col lg:flex-row justify-between gap-4 mr-4 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6  justify-center w-3/4 ">
             {items.map((item, index) => {
               if (!item || !item.product) {
@@ -79,7 +81,9 @@ export default function Carrito() {
             })}
           </div>
 
-          <div className="bg-black h-screen lg:w-1/4 w-full"></div>
+          <div className=" h-screen lg:w-1/4 w-full lg:fixed lg:right-0 lg:mr-8">
+            <Total items={items} />
+          </div>
         </section>
       )}
       <div className="mt-6">
