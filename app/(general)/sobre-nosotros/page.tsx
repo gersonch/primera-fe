@@ -40,7 +40,6 @@ const About = ({ title, description, image }: AboutProps) => {
 
 // Componente principal de la página, resuelve los datos antes de pasarlos al componente About
 const AboutPage = async () => {
-  // Resuelve la promesa aquí
   const { title, description, image } = await getAboutInfo()
 
   return (
@@ -49,6 +48,8 @@ const AboutPage = async () => {
       <About title={title} description={description} image={image} />
     </Suspense>
   )
+
+  // Resuelve la promesa aquí
 }
 
 export default AboutPage

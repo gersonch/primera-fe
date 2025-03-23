@@ -1,13 +1,23 @@
-import { GetTotalCart } from '@/lib/getTotalCart'
+import { GetTotalCart, GetTotalForProduct } from '@/lib/getTotalCart'
 import { CartItem } from '@/types/cartItem'
 
 export function Total({ items }: { items: CartItem[] }) {
   const total = GetTotalCart({ items })
+  const totalForProduct = GetTotalForProduct({ items })
 
   return (
     <section className="mx-4 flex flex-col  h-[calc(100vh-10rem)] lg:h-[calc(100vh-10rem)]">
       <div className="flex flex-col gap-4">
         <div className="border-b border-black pb-4 ">Resumen: </div>
+      </div>
+      <div>
+        {totalForProduct.map((product, index) => (
+          <div key={index} className="flex justify-between">
+            <div>{product.name}</div>
+            <div>{product.quantity}</div>
+            <div>{product.total}</div>
+          </div>
+        ))}
       </div>
       <div className="flex flex-col gap-4 my-4">
         <h3 className="flex justify-between">
