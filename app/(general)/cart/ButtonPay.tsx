@@ -2,6 +2,7 @@
 import { useTransition } from 'react'
 import { vexor } from '@/lib/vexor'
 import { VexorPaymentResponse } from 'vexor'
+import MercadoPagoIcon from '@/public/icons/MercadoPagoIcon'
 
 interface Product {
   id: string
@@ -41,10 +42,13 @@ export const ButtonPay: React.FC<ButtonPayProps> = ({ product }) => {
   return (
     <button
       onClick={handlePurchase}
-      className="bg-foreground text-background px-4 py-2 rounded w-full"
+      className="bg-blue-400 text-background px-4 py-2 rounded w-full"
       disabled={isPending}
     >
-      {isPending ? 'Loading...' : 'Buy'}
+      <div className="flex items-center justify-center gap-4">
+        <MercadoPagoIcon width={35} height={35} />
+        {isPending ? 'Loading...' : ` Pagar con Mercado Pago`}
+      </div>
     </button>
   )
 }

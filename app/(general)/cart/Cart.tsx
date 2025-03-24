@@ -42,7 +42,7 @@ export default function Carrito() {
                       alt={product.name || 'Producto sin nombre'}
                       width={1000}
                       height={1000}
-                      className="aspect-w-9 aspect-h-16 w-[500px] h-[650px] object-cover"
+                      className="aspect-w-9 aspect-h-16 w-[500px] h-[70vh] object-cover"
                     />
                     <div className="flex flex-col items-start gap-4">
                       <div>

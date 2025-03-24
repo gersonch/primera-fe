@@ -30,7 +30,7 @@ export function CardProduct({
           alt={name}
           width={2000}
           height={2000}
-          className="aspect-w-9 aspect-h-16 w-[800px] h-[750px] object-cover saturate-[.7] hover:saturate-[1.2] hover:shadow-2xl transition-transform duration-500"
+          className="aspect-w-9 aspect-h-16 w-[800px] h-[70vh] object-cover saturate-[.7] hover:saturate-[1.2] hover:shadow-2xl transition-transform duration-500"
         />
       </div>
       <div className="">
