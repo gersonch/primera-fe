@@ -1,9 +1,15 @@
-import { GetTotalCart, GetTotalForProduct } from '@/lib/getTotalCart'
+import {
+  GetTotalCart,
+  GetTotalForProduct,
+  GetTotalCartToPay,
+} from '@/lib/getTotalCart'
 import { CartItem } from '@/types/cartItem'
+import { ButtonPay } from './ButtonPay'
 
 export function Total({ items }: { items: CartItem[] }) {
   const total = GetTotalCart({ items })
   const totalForProduct = GetTotalForProduct({ items })
+  const products = GetTotalCartToPay({ items })
 
   return (
     <section className="mx-4 flex flex-col  h-[calc(100vh-10rem)] lg:h-[calc(100vh-10rem)]">
@@ -29,7 +35,7 @@ export function Total({ items }: { items: CartItem[] }) {
       </div>
       <div className="pt-8 flex-grow flex flex-col gap-4"></div>
       <div className="flex justify-center">
-        <button className="px-24 py-4 bg-blue-400">Pagar</button>
+        <ButtonPay product={products} />
       </div>
     </section>
   )

@@ -16,7 +16,7 @@ export interface NavItems {
 
 export const Navbar: React.FC = () => {
   const { items } = useCart()
-  console.log(items)
+
   const [isDeploy, setIsDeploy] = useState(false)
 
   const navItems: NavItems[] = [

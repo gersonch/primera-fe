@@ -25,6 +25,20 @@ export function GetTotalForProduct({ items }: { items: CartItem[] }) {
       quantity: item.quantity,
     }
   })
-  console.log(GetTotalForProduct)
+
   return GetTotalForProduct
+}
+
+export function GetTotalCartToPay({ items }: { items: CartItem[] }) {
+  const total = items.reduce(
+    (acc, item) => acc + item.quantity * item.product.price,
+    0
+  )
+  return {
+    id: `total-${Date.now()}`,
+    title: 'Total',
+    description: 'Total a pagar',
+    quantity: 1,
+    unit_price: total,
+  }
 }

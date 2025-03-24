@@ -8,7 +8,6 @@ import { Total } from './Total'
 export default function Carrito() {
   const { items, addQuantity, substractQuantity, removeAll, removeItem } =
     useCart()
-
   return (
     <section className={`px-4 pt-20 pb-8  ${style.links}`}>
       <div className="w-full border-b lg:border-none border-gray-600 border-opacity-35 mb-4 !text-gray-600">

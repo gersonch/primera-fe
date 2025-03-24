@@ -18,7 +18,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const { categoryId } = params
 
   const { products }: GetProductsResponse = await getProducts({ categoryId })
-  console.log({ products })
 
   return (
     <Suspense fallback={<Loading />}>

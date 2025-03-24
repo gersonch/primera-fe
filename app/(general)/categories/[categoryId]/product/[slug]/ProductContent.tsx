@@ -14,8 +14,7 @@ export default function ProductContent({
   product: ProductType
   categoryId: string
 }) {
-  const { addItem, items } = useCart()
-  console.log(items)
+  const { addItem } = useCart()
 
   return (
     <Suspense fallback={<SkeletonProduct />}>
